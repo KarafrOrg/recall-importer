@@ -28,8 +28,7 @@ func main() {
 
 func run(logger *slog.Logger) error {
 	ctx := context.Background()
-
-	_, err := maxprocs.Set(maxprocs.Logger(func(s string, i ...interface{}) {
+	_, err := maxprocs.Set(maxprocs.Logger(func(s string, i ...any) {
 		logger.DebugContext(ctx, fmt.Sprintf(s, i...))
 	}))
 	if err != nil {

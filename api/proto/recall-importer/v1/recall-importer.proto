@@ -8,20 +8,15 @@ import "google/protobuf/wrappers.proto";
 import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
 import "validate/validate.proto";
-// weak, otherwise gnostic imports broken imports for gen-go
-// weak import: proto definition only adds options, no additional messages.
-// buf:lint:ignore IMPORT_NO_WEAK
-import weak "gnostic/openapi/v3/annotations.proto"; // Will not import _ "" in the gen-go files
+import "gnostic/openapi/v3/annotations.proto";
 
-// Defines the import path that should be used to import the generated package,
-// and the package name.
 option go_package = "github.com/karafrorg/recall-importer/internal/pkg/pb;pb";
-// These annotations are used when generating the OpenAPI file.
+
 option (gnostic.openapi.v3.document) = {
   info: {
     title: "recall-importer-api";
     version: "1.0";
-    description: "Elasticsearch importer for recall";
+    description: "Elasticsearch importer for Recall";
   }
   components: {
     security_schemes: {
@@ -55,9 +50,11 @@ service RecallImporterService {
       tags: "example"
     };
   }
-  
+
 }
 
-message GetExampleRequest {}
+message GetExampleRequest {
+  string speaker = 1 [(google.api.field_behavior) = IDENTIFIER];
+}
 
 message GetExampleResponse {}

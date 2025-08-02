@@ -64,7 +64,7 @@ func TestNoOpHandler_Enabled(t *testing.T) {
 }
 
 func TestNoOpHandler_Handle(t *testing.T) {
-	require.Nil(t, noOpHandler{}.Handle(context.Background(), slog.Record{}))
+	require.NoError(t, noOpHandler{}.Handle(context.Background(), slog.Record{}))
 }
 
 func TestNoOpHandler_WithAttrs(t *testing.T) {
